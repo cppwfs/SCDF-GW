@@ -4,7 +4,7 @@ This is a Spring Cloud Gateway Project that offers a SCDF filter that will deplo
 
 == Requirements:
 
-* Java 8 or Above
+* Java 11 or Above
 
 == Classes:
 

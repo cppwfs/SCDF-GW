@@ -1,0 +1,39 @@
+= gwscdf
+
+This is a Spring Cloud Gateway Project that offers a SCDF filter that will deploy the specified stream before sending the request to the URI target.
+
+== Requirements:
+
+* Java 8 or Above
+
+== Classes:
+
+* GwscdfApplication - the Spring Boot Main Application
+
+* ScdfGatewayFilterFactory - the filter that can be applied to a route that will send a deploy request to a SCDF (located at http://localhost:9393) for the stream name located in the header with the key `scdf-stream-name`.
+
+== Configuration
+
+* application.yaml contains a route that will send a request to `http://localhost:8085` if the header contains `Host=localhost:8085`.  It will also apply the scdf filter that will look for the key `scdf-stream-name` in the header and attempt to deploy the stream contained in the value.
+
+== Build:
+
+[source,shell,indent=2]
+----
+mvn clean package
+----
+
+=== Run:
+
+[source,shell,indent=2]
+----
+java -jar target/gwscdf-0.0.1-SNAPSHOT.jar
+----
+
+=== Sample Curl Command:
+To send a request to `http://localhost:8085` and deploy the `testtock` stream use the following curl command.
+
+[source,shell,indent=2]
+----
+curl http://localhost:8080 --header 'Host: localhost:8085' --header "scdf-stream-name: testtock"
+----

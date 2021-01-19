@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: removerequestparameter_route
+        uri: http://localhost:8085
+        predicates:
+        - Host=localhost:8085
+        filters:
+        - Scdf=X-foo,bar
